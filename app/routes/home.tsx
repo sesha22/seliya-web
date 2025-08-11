@@ -1,13 +1,10 @@
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Seliya" },
-    { name: "description", content: "Spesialist Sambal" },
-  ];
+  return [{ title: "Seliya" }, { name: "description", content: "Spesialist Sambal" }];
 }
 export async function clientLoader({}: Route.ClientLoaderArgs) {
-  const response = await fetch(`http://localhost:3000/products`);
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/products`);
   const products = await response.json();
 
   console.log({ products });
@@ -19,7 +16,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   return (
     <div>
-      <h1>Seliya</h1>
+      <section>
+        <h1>Seliya Sambal</h1>
+        {/* HERO */}
+      </section>
+
       {products && (
         <ul>
           {products.map((product: any) => {
