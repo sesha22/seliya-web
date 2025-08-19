@@ -1,3 +1,4 @@
+import { ProductsGrid } from "~/modules/product/componets/grid";
 import type { Route } from "./+types/products";
 
 export function meta({}: Route.MetaArgs) {
@@ -18,11 +19,7 @@ export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
 
   return (
     <div>
-      <ul>
-        {products.map((product: any) => {
-          return <li key={product.id}>{product.name}</li>;
-        })}
-      </ul>
+      <ProductsGrid products={products} />
     </div>
   );
 }
