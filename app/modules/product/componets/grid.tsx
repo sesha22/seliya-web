@@ -1,4 +1,4 @@
-import type { Product } from "./type";
+import type { Product } from "../type";
 
 export function ProductsGrid({ products }: { products: Product[] }) {
   return (
