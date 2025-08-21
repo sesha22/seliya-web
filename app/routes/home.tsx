@@ -1,5 +1,6 @@
 import { ProductsGrid } from "~/modules/product/componets/grid";
 import type { Route } from "./+types/home";
+import type { Product } from "~/modules/product/type";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -7,18 +8,16 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "Spesialist Sambal" },
   ];
 }
-export async function clientLoader({}: Route.ClientLoaderArgs) {
+export async function clientLoader() {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_API_URL}/products`
   );
-  const products = await response.json();
-
-  console.log({ products });
-  return products;
+  const products: Product[] = await response.json();
+  return { products };
 }
 
 export default function HomeRoute({ loaderData }: Route.ComponentProps) {
-  const products = loaderData;
+  const { products } = loaderData;
 
   return (
     <div>
