@@ -1,5 +1,6 @@
 import { ProductsGrid } from "~/modules/product/componets/grid";
 import type { Route } from "./+types/products";
+import type { Products } from "~/modules/product/schema";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Products of Seliya" }];
