@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export function ProductsGrid({ products }: { products: Product[] }) {
   return (
-    <ul>
+    <ul className="grid grid-cols-4 gap-4">
       {products.map((product) => {
         return (
           <li key={product.id}>
@@ -13,7 +13,11 @@ export function ProductsGrid({ products }: { products: Product[] }) {
                 <h4>{product.name}</h4>
               </CardHeader>
               <CardContent>
-                <img src={product.imageUrl} alt={product.name} />
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="size-40"
+                />
               </CardContent>
               <p>{product.price}</p>
             </Card>
