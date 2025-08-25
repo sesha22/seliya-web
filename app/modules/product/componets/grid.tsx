@@ -8,15 +8,13 @@ export function ProductsGrid({ products }: { products: Product[] }) {
       {products.map((product) => {
         return (
           <li key={product.id}>
-            <Card>
-              <CardHeader>
-                <h4>{product.name}</h4>
-              </CardHeader>
-              <CardContent>
+            <Link to={`/products/${product.slug}`}>
+              <Card>
                 <img src={product.imageUrl} alt={product.name} />
-              </CardContent>
-              <p>{product.price}</p>
-            </Card>
+                <h4>{product.name}</h4>
+                <p>{product.price}</p>
+              </Card>
+            </Link>
           </li>
         );
       })}

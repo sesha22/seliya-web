@@ -1,5 +1,5 @@
 import type { Product } from "~/modules/product/type";
-import type { Route } from "/+types/products-slug";
+import type { Route } from "./+types/products-slug";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "(Product Name) of Seliya" }];
