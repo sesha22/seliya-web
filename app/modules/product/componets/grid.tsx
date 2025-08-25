@@ -5,20 +5,18 @@ import { Link } from "react-router";
 export function ProductsGrid({ products }: { products: Product[] }) {
   return (
     <ul>
-      {products.map((product: any) => {
+      {products.map((product) => {
         return (
           <li key={product.id}>
-            <Link to={`/products/${product.slug}`}>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{product.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <img src={product.imageUrl} alt={product.name} />
-                </CardContent>
-                <p>{product.price}</p>
-              </Card>
-            </Link>
+            <Card>
+              <CardHeader>
+                <h4>{product.name}</h4>
+              </CardHeader>
+              <CardContent>
+                <img src={product.imageUrl} alt={product.name} />
+              </CardContent>
+              <p>{product.price}</p>
+            </Card>
           </li>
         );
       })}
