@@ -12,7 +12,7 @@ export default function LayoutMain() {
   const date = new Date();
   const year = date.getFullYear();
   return (
-    <div>
+    <div className="flex min-h-screen flex-col ">
       <nav className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex gap-3 items-center">
           <img src="/seliya.svg" alt="Seliya Logo" className="w-12 h-12" />
@@ -32,9 +32,11 @@ export default function LayoutMain() {
         </ul>
       </nav>
 
-      <Outlet />
+      <main className="flex-[1]">
+        <Outlet />
+      </main>
 
-      <footer>
+      <footer className="p-2 bg-red-100">
         <p>© 2023 - {year} Seliya </p>
       </footer>
     </div>
