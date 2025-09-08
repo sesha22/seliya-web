@@ -14,10 +14,10 @@ export default function LayoutMain() {
   return (
     <div>
       <nav className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
-        <div className="flex gap-3 items-center">
+        <Link to="/" className="flex gap-3 items-center">
           <img src="/seliya.svg" alt="Seliya Logo" className="w-12 h-12" />
           <h1 className="font-bold text-xl text-gray-800">Seliya Sambal</h1>
-        </div>
+        </Link>
         <ul className="flex gap-6">
           {navigationLinks.map((link) => (
             <li key={link.to}>
