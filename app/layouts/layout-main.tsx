@@ -1,17 +1,41 @@
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
+
+const navigationLinks = [
+  { to: "/", text: "Home" },
+  { to: "/products", text: "Products" },
+  { to: "/register", text: "Register" },
+  { to: "/login", text: "Login " },
+  { to: "/dashboard", text: "Dashboard " },
+];
 
 export default function LayoutMain() {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <div>
-      <nav>
-        <h1>Seliya Sambal</h1>
-        <div>
-          <img src="/seliya.svg" alt="Seliya Logo" />
+      <nav className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+        <div className="flex gap-3 items-center">
+          <img src="/seliya.svg" alt="Seliya Logo" className="w-12 h-12" />
+          <h1 className="font-bold text-xl text-gray-800">Seliya Sambal</h1>
         </div>
+        <ul className="flex gap-6">
+          {navigationLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className="text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 px-2 py-1 rounded"
+              >
+                {link.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
+
       <Outlet />
+
       <footer>
-        <p>© 2023 Seliya </p>
+        <p>© 2023 - {year} Seliya </p>
       </footer>
     </div>
   );
