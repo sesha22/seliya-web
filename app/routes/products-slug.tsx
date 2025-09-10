@@ -1,4 +1,3 @@
-import type { Product } from "~/modules/product/type";
 import type { Route } from "./+types/products-slug";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,12 +8,12 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_API_URL}/products/${params.slug}`
   );
-  const product: Product = await response.json();
-  return { product };
+  const product = await response.json();
+  return product;
 }
 
 export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
-  const { product } = loaderData;
+  const product = loaderData;
 
   return (
     <div>
