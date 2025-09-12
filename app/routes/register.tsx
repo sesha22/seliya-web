@@ -8,6 +8,18 @@ export function meta({}: Route.MetaArgs) {
   return [{ title: "Register" }];
 }
 
+export async function clientAction({ request }: Route.ClientActionArgs) {
+  const formData = await request.formData();
+
+  const fullName = formData.get("fullName");
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  console.log({ fullName, email, password });
+
+  return redirect("/login");
+}
+
 export async function clientAction({ request }: Route.ActionArgs) {
   const formData = await request.formData();
 
