@@ -1,4 +1,7 @@
 import { Link, Outlet } from "react-router";
+import type { Route } from "./+types/layout-main";
+import { getSession } from "~/sessions";
+import type { UserAuthMe } from "~/modules/user/type";
 
 const navigationLinks = [
   { to: "/", text: "Home" },
@@ -8,7 +11,20 @@ const navigationLinks = [
   { to: "/dashboard", text: "Dashboard " },
 ];
 
-export default function LayoutMain() {
+export async function loader({ request }: Route.ClientLoaderArgs) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const token = session.get("token");
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_API_URL}/auth/me`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  const user: UserAuthMe = await response.json();
+  return { user };
+}
+
+export default function LayoutMain({ loaderData }: Route.ComponentProps) {
+  const { user } = loaderData;
+
   const date = new Date();
   const year = date.getFullYear();
   return (
@@ -29,6 +45,13 @@ export default function LayoutMain() {
               </Link>
             </li>
           ))}
+          {user.fullName && (
+            <li>
+              <div>
+                <b>{user.fullName}</b>
+              </div>
+            </li>
+          )}
         </ul>
       </nav>
 
