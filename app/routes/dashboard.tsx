@@ -9,7 +9,12 @@ export function meta({}: Route.MetaArgs) {
 }
 export async function loader({ request }: Route.ClientLoaderArgs) {
   const session = await getSession(request.headers.get("Cookie"));
+  if (!session.has("token")) {
+    return redirect("/login");
+  }
+
   const token = session.get("token");
+
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_API_URL}/auth/me`,
     { headers: { Authorization: `Bearer ${token}` } }
