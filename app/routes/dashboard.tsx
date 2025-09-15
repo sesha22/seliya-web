@@ -1,6 +1,8 @@
 import { getSession } from "~/sessions";
 import type { Route } from "./+types/dashboard";
 import { redirect } from "react-router";
+import type { UserAuthMe } from "~/modules/user/type";
+import { Card } from "~/components/ui/card";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Dashboard" }];
@@ -21,10 +23,17 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
   return { user };
 }
 
-export default function DashboardRoute({}: Route.ComponentProps) {
+export default function DashboardRoute({ loaderData }: Route.ComponentProps) {
+  const { user } = loaderData;
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-xs">
+        <h1>Dashboard</h1>
+        <Card>
+          <h2>{user.fullName}</h2>
+          <p>{user.email}</p>
+        </Card>
+      </div>
     </div>
   );
 }
