@@ -1,4 +1,4 @@
-import { getSession } from "~/sessions";
+import { destroySession, getSession } from "~/sessions";
 import type { Route } from "./+types/dashboard";
 import { redirect } from "react-router";
 import type { UserAuthMe } from "~/modules/user/type";
@@ -19,6 +19,13 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
     `${import.meta.env.VITE_BACKEND_API_URL}/auth/me`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
+
+  if (!response.ok) {
+    return redirect("/login", {
+      headers: { "Set-Cookie": await destroySession(session) },
+    });
+  }
+
   const user: UserAuthMe = await response.json();
   return { user };
 }

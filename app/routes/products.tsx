@@ -18,6 +18,9 @@ export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
 
   return (
     <div>
+      <section className="m-20">
+        <p className="font-bold text-3xl text-center">Specialist Sambals</p>
+      </section>
       <ProductsGrid products={products} />
     </div>
   );

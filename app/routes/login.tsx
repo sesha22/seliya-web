@@ -9,7 +9,7 @@ export function meta({}: Route.MetaArgs) {
   return [{ title: "Login" }];
 }
 
-export async function Action({ request }: Route.ActionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const session = await getSession(request.headers.get("Cookie"));
   if (session.has("token")) {
     return redirect("/dashboard");
