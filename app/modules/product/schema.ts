@@ -1,12 +1,18 @@
-export type Products = {
-  id: string;
-  slug: string;
-  name: string;
-  price: number;
+import { z } from "zod";
 
-  description: string;
-  imageUrl: string;
+export const ProductSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  name: z.string(),
+  price: z.number().positive(),
+  description: z.string(),
+  imageUrl: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
 
-  createdAt: string;
-  updatedAt: string;
-};
+export const ProductsSchema = z.array(ProductSchema);
+
+export const ProductsSlugSchema = z.object({
+  slug: z.string(),
+});

@@ -15,5 +15,6 @@ export default [
     route("login", "routes/login.tsx"), // POST /auth/login
     route("logout", "routes/logout.tsx"),
     route("dashboard", "routes/dashboard.tsx"), // GET /auth/me
+    route("cart", "routes/cart.tsx"), // GET /cart
   ]),
 ] satisfies RouteConfig;
